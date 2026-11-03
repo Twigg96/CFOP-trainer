@@ -11,8 +11,12 @@ def main():
             solves.append(new_solve)
             print('Solve added\n')
         elif choice == '2':
+            if len(solves) == 0:
+                print('There are no solves yet')
+                continue
             print(solves)
         elif choice == '3':
+            print('Thanks for using the solve tracker\n')
             break
         else:
             print('Enter a valid option: 1, 2, or 3\n')
