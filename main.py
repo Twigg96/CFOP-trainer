@@ -1,4 +1,5 @@
 from inputs import full_time, solve_holder
+from display import display_history
 
 solves = []
 
@@ -14,7 +15,7 @@ def main():
             if len(solves) == 0:
                 print('There are no solves yet')
                 continue
-            print(solves)
+            display_history(solves)
         elif choice == '3':
             print('Thanks for using the solve tracker\n')
             break
