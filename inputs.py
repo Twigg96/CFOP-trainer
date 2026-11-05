@@ -1,7 +1,6 @@
 import datetime
 from hmac import new
 from logging import raiseExceptions
-from operator import ne
 
 date = datetime.datetime.now()
 
@@ -10,7 +9,6 @@ def solve_holder():
     f2l = float_validation("Enter f2l time: ")
     oll = float_validation("Enter oll time: ")
     pll = float_validation("Enter pll time: ")
-    #print(date.strftime("%Y-%m-%d %H:%M:%S"))
     full_solve = {
             'date': date,
             'cross': cross,
@@ -39,10 +37,4 @@ def full_time(full_solve):
     solve_time = full_solve['cross'] + full_solve['f2l'] + full_solve['oll'] + full_solve['pll'] 
     full_solve['solve_time'] = solve_time
     return solve_time
-
-
-
-#new_solve = solve_holder()
-#total = full_time(new_solve)
-#print(f'Total time : {total:.2f}')
 
