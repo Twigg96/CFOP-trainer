@@ -1,7 +1,23 @@
 from inputs import full_time, solve_holder
 from display import display_history
+import json, datetime
 
-solves = []
+
+try:
+    with open('solves.json', 'r') as file:
+        solves = json.load(file)
+except FileNotFoundError:
+    with open("solves.json", 'w') as file:
+        solves = []
+        json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)
+except json.JSONDecodeError:
+    with open("solves.json", 'w') as file:
+        solves = []
+        json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)
+
+
+for solve in solves:
+    solve['date'] = datetime.datetime.fromisoformat(solve['date'])
 
 def main():
     while True:
@@ -10,6 +26,8 @@ def main():
             new_solve = solve_holder()
             full_time(new_solve)
             solves.append(new_solve)
+            with open("solves.json", 'w') as file:
+                json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)
             print('Solve added\n')
         elif choice == '2':
             if len(solves) == 0:
