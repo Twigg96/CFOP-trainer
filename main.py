@@ -1,3 +1,4 @@
+from personal_bests import best_ao5, best_ao12, pb
 from inputs import full_time, solve_holder
 from display import display_history
 import json, datetime
@@ -19,8 +20,24 @@ except json.JSONDecodeError:
 for solve in solves:
     solve['date'] = datetime.datetime.fromisoformat(solve['date'])
 
+personal_best = pb(solves)
+personal_ao5 = best_ao5(solves)
+personal_ao12 = best_ao12(solves)
+
 def main():
     while True:
+        if personal_best is None:
+            print('PB: ...')
+        else:
+            print(f"PB: {personal_best['solve_time']:.2f}s")
+        if personal_ao5 is None:
+            print('Best Ao5: ...')
+        else:
+            print(f"Best Ao5: {personal_ao5:.2f}s")
+        if personal_ao12 is None:
+            print('Best Ao12: ...')
+        else:
+            print(f"Best Ao12: {personal_ao12:.2f}s")
         choice = input('1. Add solve Time\n2. View solve history\n3. Exit\n')
         if choice == '1':
             new_solve = solve_holder()
