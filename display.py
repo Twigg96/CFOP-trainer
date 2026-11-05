@@ -1,4 +1,5 @@
 import enum
+from inputs import date
 
 
 def display_history(solves):
@@ -6,5 +7,5 @@ def display_history(solves):
         print('No solves recorded yet')
         return
     for index, solve in enumerate(solves, start=1):
-        print(f"Solve #{index}\nCross time: {solve['cross']:.2f}s\nF2L time: {solve['f2l']:.2f}s\nOLL time: {solve['oll']:.2f}s\nPLL time: {solve['pll']:.2f}s\nSolve Time: {solve['solve_time']:.2f}s")
+        print(f"Solve #{index}\nDate and time: {date.strftime('%b %m %Y %H:%M')}\nCross time: {solve['cross']:.2f}s\nF2L time: {solve['f2l']:.2f}s\nOLL time: {solve['oll']:.2f}s\nPLL time: {solve['pll']:.2f}s\nSolve Time: {solve['solve_time']:.2f}s")
 

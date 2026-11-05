@@ -3,8 +3,9 @@ from hmac import new
 from logging import raiseExceptions
 from operator import ne
 
+date = datetime.datetime.now()
+
 def solve_holder():
-    date = datetime.datetime.now()
     cross = float_validation("Enter cross time: ")
     f2l = float_validation("Enter f2l time: ")
     oll = float_validation("Enter oll time: ")
