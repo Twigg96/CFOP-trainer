@@ -1,5 +1,6 @@
 from personal_bests import best_ao5, best_ao12, pb
 from inputs import full_time, solve_holder
+from timer import Timer, solve_holder_timer
 from display import display_history
 import json, datetime
 
@@ -38,24 +39,30 @@ def main():
             print('Best Ao12: ...')
         else:
             print(f"Best Ao12: {personal_ao12:.2f}s")
-        choice = input('1. Add solve Time\n2. View solve history\n3. Exit\n')
+        choice = input('1. Use Timer\n2. Add solve Time with manual splits\n3. View solve history\n4. Exit\n')
         if choice == '1':
+            new_solve  = solve_holder_timer()
+            solves.append(new_solve)
+            with open("solves.json", 'w') as file:
+                json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)
+            print('Solve added\n')
+        if choice == '2':
             new_solve = solve_holder()
             full_time(new_solve)
             solves.append(new_solve)
             with open("solves.json", 'w') as file:
                 json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)
             print('Solve added\n')
-        elif choice == '2':
+        elif choice == '3':
             if len(solves) == 0:
                 print('There are no solves yet')
                 continue
             display_history(solves)
-        elif choice == '3':
+        elif choice == '4':
             print('Thanks for using the solve tracker\n')
             break
         else:
-            print('Enter a valid option: 1, 2, or 3\n')
+            print('Enter a valid option: 1, 2, 3, or 4\n')
             continue
 
 if __name__ == '__main__':
