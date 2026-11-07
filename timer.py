@@ -22,6 +22,28 @@ def Timer():
     solve = end_time - start_time
     print(f'Solve time: {solve:.2f}s')
     return solve
+
+def Split_Timer():
+    while True:
+        start = input('Press Enter to start')
+        if start != '':
+            print('Please press Enter to start timer')
+            continue
+        break
+    start_time = time.perf_counter()
+    previous_time = start_time
+
+    splits = {}
+
+    for split in ('cross', 'f2l', 'oll', 'pll'):
+        input(f'Press Enter to finish {split.upper()}')
+        current_time = time.perf_counter()
+        splits[split] = current_time - previous_time
+        previous_time = current_time
+    splits['solve_time'] = previous_time -start_time
+    splits['date'] = datetime.datetime.now()
+    return splits
+
         
 def solve_holder_timer():
     full_solve = {
@@ -33,4 +55,3 @@ def solve_holder_timer():
             'solve_time':Timer()
             }
     return full_solve
-
