@@ -2,6 +2,7 @@ from personal_bests import best_ao5, best_ao12, pb
 from inputs import full_time, solve_holder
 from timer import Timer, solve_holder_timer, Split_Timer
 from display import display_history
+from delete import delete_solves
 import json, datetime
 
 
@@ -39,7 +40,7 @@ def main():
             print('Best Ao12: ...')
         else:
             print(f"Best Ao12: {personal_ao12:.2f}s")
-        choice = input('1. Use Timer\n2. Use splits timer\n3. Add solve Time with manual splits\n4. View solve history\n5. Exit\n')
+        choice = input('1. Use Timer\n2. Use splits timer\n3. Add solve Time with manual splits\n4. View solve history\n5. Delete a Solve\n6. Exit\n')
         if choice == '1':
             new_solve  = solve_holder_timer()
             solves.append(new_solve)
@@ -65,6 +66,9 @@ def main():
                 continue
             display_history(solves)
         elif choice == '5':
+            print('Choose a Solve to delete')
+            delete_solves(solves)
+        elif choice == '6':
             print('Thanks for using the solve tracker\n')
             break
         else:
