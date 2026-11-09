@@ -9,7 +9,7 @@ def solve_holder():
     f2l = float_validation("Enter f2l time: ")
     oll = float_validation("Enter oll time: ")
     pll = float_validation("Enter pll time: ")
-    full_solve = {
+    full_solve:dict[str, datetime.datetime | float | str | None] = {
             'date': date,
             'cross': cross,
             'f2l':f2l,

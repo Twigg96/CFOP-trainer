@@ -46,7 +46,7 @@ def Split_Timer():
 
         
 def solve_holder_timer():
-    full_solve = {
+    full_solve:dict[str, datetime.datetime | float | str | None] = {
             'date': date,
             'cross': None,
             'f2l':None,

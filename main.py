@@ -3,6 +3,7 @@ from inputs import full_time, solve_holder
 from timer import Timer, solve_holder_timer, Split_Timer
 from display import display_history
 from delete import delete_solves
+from scramble import scramble, faces, modifiers
 import json, datetime
 
 
@@ -25,6 +26,7 @@ for solve in solves:
 personal_best = pb(solves)
 personal_ao5 = best_ao5(solves)
 personal_ao12 = best_ao12(solves)
+current_scramble = scramble(faces, modifiers)
 
 def main():
     while True:
@@ -42,20 +44,25 @@ def main():
             print(f"Best Ao12: {personal_ao12:.2f}s")
         choice = input('1. Use Timer\n2. Use splits timer\n3. Add solve Time with manual splits\n4. View solve history\n5. Delete a Solve\n6. Exit\n')
         if choice == '1':
-            new_solve  = solve_holder_timer()
+            print(f'\n{current_scramble}\n')
+            new_solve = solve_holder_timer()
             solves.append(new_solve)
             with open("solves.json", 'w') as file:
                 json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)
             print('Solve added\n')
         if choice == '2':
+            print(f'\n{current_scramble}\n')
             new_solve = Split_Timer()
+            new_solve['scramble'] = current_scramble
             solves.append(new_solve)
             with open("solves.json", 'w') as file:
                 json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)
             print('Solve added\n')
         if choice == '3':
+            print(f'\n{current_scramble}\n')
             new_solve = solve_holder()
             full_time(new_solve)
+            new_solve['scramble'] = current_scramble
             solves.append(new_solve)
             with open("solves.json", 'w') as file:
                 json.dump(solves, file, indent=4, default=datetime.datetime.isoformat)

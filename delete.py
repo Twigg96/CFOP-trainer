@@ -8,7 +8,7 @@ def delete_solves(solves):
     while True:
         try:
             sorted_list = sorted(solves, key=lambda solve: solve['date'], reverse=True)
-            choice = int(input("Choose a Solve Number to Delete"))
+            choice = int(input("Choose a Solve Number to Delete\n"))
             if 1 <= choice <= len(solves):
                 selected_solve = sorted_list[choice - 1]
                 print(f"Delete {selected_solve['date']} {selected_solve['solve_time']}?\n")
